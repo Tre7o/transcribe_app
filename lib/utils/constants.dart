@@ -12,9 +12,50 @@ var myAppBar = AppBar(
   backgroundColor: Colors.grey[900],
 );
 
+var desktopBar = AppBar(
+  title: const Text('SermonScribe',
+      style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600)),
+  iconTheme: const IconThemeData(color: Colors.white),
+  backgroundColor: Colors.grey[900],
+  actions: [
+    Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+          child: GestureDetector(onTap: () {}, child: Text("Dashboard")),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+          child: GestureDetector(onTap: () {}, child: Text("Transcriptions")),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+          child: GestureDetector(onTap: () {}, child: Text("Settings")),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+          child: ElevatedButton(
+            onPressed: () {},
+            child: Text(
+              "Logout",
+              style: TextStyle(
+                  color: Colors.grey[900], fontWeight: FontWeight.bold),
+            ),
+            style: ElevatedButton.styleFrom(
+                minimumSize: const Size(200, 50),
+                backgroundColor: Colors.white,
+                elevation: 1),
+          ),
+        )
+      ],
+    ),
+  ],
+);
+
 var sideDrawer = Drawer(
   backgroundColor: Colors.grey[100],
-  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.zero)),
+  shape:
+      const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.zero)),
   child: Padding(
     padding: const EdgeInsets.all(8.0),
     child: Column(children: [
@@ -31,7 +72,8 @@ var sideDrawer = Drawer(
           child: ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
-                minimumSize: const Size(300, 60), backgroundColor: Colors.grey[900]),
+                minimumSize: const Size(300, 60),
+                backgroundColor: Colors.grey[900]),
             child: const Text(
               "Add file",
               style: TextStyle(
