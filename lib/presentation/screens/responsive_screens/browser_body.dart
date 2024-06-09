@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:transcribe_app/utils/constants.dart';
-import 'package:transcribe_app/utils/transcribed_tile.dart';
 
-import '../../../utils/my_tile.dart';
+import '../../../utils/widgets/my_tile.dart';
+import '../../../utils/widgets/transcribed_tile.dart';
 
 class BrowserBody extends StatefulWidget {
   const BrowserBody({super.key});
@@ -17,7 +17,7 @@ class _BrowserBodyState extends State<BrowserBody> {
     return Scaffold(
       appBar: myAppBar,
       backgroundColor: backgroundColor,
-      drawer: myDrawer,
+      drawer: buildMyDrawer(context),
       body: Column(
         children: [
           AspectRatio(
@@ -52,11 +52,21 @@ class _BrowserBodyState extends State<BrowserBody> {
               ],
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Your transcriptions",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
           Expanded(
               child: ListView.builder(
                   itemCount: 5,
                   itemBuilder: (context, index) {
-                    return const MyTile();
+                    return MyTile();
                   }))
         ],
       ),
