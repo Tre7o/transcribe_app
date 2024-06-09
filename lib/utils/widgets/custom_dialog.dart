@@ -2,7 +2,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:transcribe_app/domain/models/transcription.dart';
 
 import '../../presentation/controllers/transcribe_controller.dart';
 
@@ -53,15 +52,17 @@ class _CustomDialogState extends State<CustomDialog> {
                     String formattedTime =
                         DateFormat('HH:mm:ss').format(dateTime);
 
-                    final transcription = Transcription(
-                        file.name, formattedDate, formattedTime, null);
+                    transcribeController.addAudioFile(
+                        file.name, formattedDate, formattedTime);
 
-                    setState(() {
-                      transcribeController.transcriptionTitle = transcription.fileName;
-                      transcribeController.transcriptionDate = transcription.currentDate;
-                      transcribeController.transcriptionTime = transcription.currentTime;
-                    });
+                    // final transcription = Transcription(
+                    //     file.name, formattedDate, formattedTime, null);
 
+                    // setState(() {
+                    //   transcribeController.transcriptionTitleController = transcription.fileName;
+                    //   transcribeController.transcriptionDateController = transcription.currentDate;
+                    //   transcribeController.transcriptionTimeController = transcription.currentTime;
+                    // });
                   } else {
                     // User canceled the picker
                     return;

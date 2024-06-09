@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:transcribe_app/utils/widgets/custom_dialog.dart';
-import 'package:transcribe_app/utils/widgets/my_tile.dart';
+
+import '../presentation/controllers/transcribe_controller.dart';
 
 var backgroundColor = Colors.white;
 
@@ -54,6 +56,8 @@ var desktopBar = AppBar(
 );
 
 Drawer buildSideDrawer(BuildContext context) {
+  final transcribeController = Get.put(TranscribeController());
+
   return Drawer(
     backgroundColor: Colors.grey[100],
     shape: const RoundedRectangleBorder(
@@ -73,11 +77,39 @@ Drawer buildSideDrawer(BuildContext context) {
         ),
         AspectRatio(
             aspectRatio: 0.7,
-            child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return MyTile();
-                })),
+            child: Obx(
+              () => ListView.builder(
+                  itemCount: transcribeController.listItem.value,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.grey[300],
+                        ),
+                        child: ListTile(
+                          leading: const Icon(Icons.audio_file),
+                          title: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Text(
+                              removeFileExtension(transcribeController
+                                  .audioFileList[index].fileName),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          subtitle: Text(
+                              "${transcribeController.audioFileList[index].currentDate} ${transcribeController.audioFileList[index].currentTime}"),
+                          titleTextStyle: TextStyle(
+                              color: Colors.grey[900],
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    );
+                  }),
+            )),
         Expanded(
           child: Align(
             alignment: Alignment.bottomCenter,
@@ -102,6 +134,15 @@ Drawer buildSideDrawer(BuildContext context) {
       ]),
     ),
   );
+}
+
+String removeFileExtension(String fileName) {
+  int lastDotIndex = fileName.lastIndexOf('.');
+  if (lastDotIndex == -1) {
+    // No extension found
+    return fileName;
+  }
+  return fileName.substring(0, lastDotIndex);
 }
 
 Drawer buildMyDrawer(BuildContext context) {

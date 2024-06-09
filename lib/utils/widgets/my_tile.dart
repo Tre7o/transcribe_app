@@ -24,24 +24,22 @@ class _MyTileState extends State<MyTile> {
         ),
         child: ListTile(
           leading: const Icon(Icons.audio_file),
-          title: transcribeController.transcriptionTitle.isEmpty
-              ? Text(
+          title: transcribeController.transcriptionTitleController.isEmpty
+              ? const Text(
                   "Title",
                 )
               : Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Text(
                     removeFileExtension(
-                        transcribeController.transcriptionTitle),
+                        transcribeController.transcriptionTitleController),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-          subtitle: transcribeController.transcriptionDate.isEmpty
-              ? Text("Time & date")
-              : Text(transcribeController.transcriptionDate +
-                  " " +
-                  transcribeController.transcriptionTime),
+          subtitle: transcribeController.transcriptionDateController.isEmpty
+              ? const Text("Time & date")
+              : Text("${transcribeController.transcriptionDateController} ${transcribeController.transcriptionTimeController}"),
           titleTextStyle: TextStyle(
               color: Colors.grey[900],
               fontSize: 16,
