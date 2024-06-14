@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:transcribe_app/utils/constants.dart';
 
-import '../../../utils/transcribed_tile.dart';
+import '../../../utils/widgets/transcribed_tile.dart';
+
 
 class DesktopBody extends StatefulWidget {
   const DesktopBody({super.key});
@@ -14,10 +15,10 @@ class _DesktopBodyState extends State<DesktopBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: myAppBar,
+      appBar: desktopBar,
       body: Row(
         children: [
-          sideDrawer,
+          buildSideDrawer(context),
           Expanded(
               child: Column(
             children: [

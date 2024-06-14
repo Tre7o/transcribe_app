@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:transcribe_app/utils/constants.dart';
-import 'package:transcribe_app/utils/my_tile.dart';
-
-import '../../../utils/transcribed_tile.dart';
+import '../../../utils/widgets/my_tile.dart';
+import '../../../utils/widgets/transcribed_tile.dart';
 
 class MobileBody extends StatefulWidget {
   const MobileBody({super.key});
@@ -17,12 +16,12 @@ class _MobileBodyState extends State<MobileBody> {
     return Scaffold(
       appBar: myAppBar,
       backgroundColor: backgroundColor,
-      drawer: myDrawer,
+      drawer: buildMyDrawer(context),
       body: Column(
         children: [
           // mobile_grid was here
           AspectRatio(
-            aspectRatio: 1,
+            aspectRatio: 0.5,
             child: Column(
               children: [
                 Padding(
@@ -53,11 +52,21 @@ class _MobileBodyState extends State<MobileBody> {
               ],
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Your transcriptions",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
           Expanded(
               child: ListView.builder(
                   itemCount: 5,
                   itemBuilder: (context, index) {
-                    return const MyTile();
+                    return MyTile();
                   }))
         ],
       ),

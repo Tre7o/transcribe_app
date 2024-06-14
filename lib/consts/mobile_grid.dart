@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../utils/card_box.dart';
+import '../utils/widgets/card_box.dart';
+
 
 class MobileGrid extends StatelessWidget {
   const MobileGrid({super.key});
