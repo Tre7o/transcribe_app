@@ -55,6 +55,7 @@ var desktopBar = AppBar(
   ],
 );
 
+// drawer for rendering lists dynamically
 Drawer buildSideDrawer(BuildContext context) {
   final transcribeController = Get.put(TranscribeController());
 
