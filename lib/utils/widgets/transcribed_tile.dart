@@ -6,7 +6,7 @@ class TranscribedTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 80),
+        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
