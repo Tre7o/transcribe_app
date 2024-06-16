@@ -14,6 +14,7 @@ class CustomDialog extends StatefulWidget {
 
 class _CustomDialogState extends State<CustomDialog> {
   final transcribeController = Get.put(TranscribeController());
+  String message = '';
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +33,7 @@ class _CustomDialogState extends State<CustomDialog> {
                 "Upload your audio file",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
+              Text(message),
               ElevatedButton(
                 onPressed: () async {
                   FilePickerResult? result =
@@ -52,8 +54,19 @@ class _CustomDialogState extends State<CustomDialog> {
                     String formattedTime =
                         DateFormat('HH:mm:ss').format(dateTime);
 
-                    transcribeController.addAudioFile(
-                        file.name, formattedDate, formattedTime);
+                    if (file.extension != 'mp3' &&
+                        file.extension != 'mp4' &&
+                        file.extension != 'm4a') {
+                      setState(() {
+                        message = 'Please select an audio or video file';
+                      });
+                    } else {
+                      transcribeController.addAudioFile(
+                          file.name, formattedDate, formattedTime);
+                      setState(() {
+                        message = '';
+                      });
+                    }
 
                     // final transcription = Transcription(
                     //     file.name, formattedDate, formattedTime, null);
