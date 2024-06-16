@@ -63,9 +63,10 @@ class _CustomDialogState extends State<CustomDialog> {
                     } else {
                       transcribeController.addAudioFile(
                           file.name, formattedDate, formattedTime);
-                      setState(() {
-                        message = '';
-                      });
+
+                      // ignore: use_build_context_synchronously
+                      Navigator.of(context)
+                          .pop(); // to remove the dialog box after
                     }
 
                     // final transcription = Transcription(
