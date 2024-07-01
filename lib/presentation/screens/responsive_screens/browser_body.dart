@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:transcribe_app/utils/constants.dart';
-
-import '../../../utils/widgets/my_tile.dart';
+import 'package:transcribe_app/utils/widgets/my_tile.dart';
 import '../../../utils/widgets/transcribed_tile.dart';
+import '../../controllers/transcribe_controller.dart';
 
 class BrowserBody extends StatefulWidget {
   const BrowserBody({super.key});
@@ -12,6 +13,8 @@ class BrowserBody extends StatefulWidget {
 }
 
 class _BrowserBodyState extends State<BrowserBody> {
+  final transcribeController = Get.put(TranscribeController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,11 +66,21 @@ class _BrowserBodyState extends State<BrowserBody> {
             ),
           ),
           Expanded(
-              child: ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return MyTile();
-                  }))
+              child: Obx(
+            () => ListView.builder(
+                itemCount: transcribeController.listItem.value,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.grey[300],
+                        ),
+                        child: MyTile(index: index)),
+                  );
+                }),
+          ))
         ],
       ),
     );

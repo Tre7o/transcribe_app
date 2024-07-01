@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import '../../presentation/controllers/transcribe_controller.dart';
 
 class MyTile extends StatefulWidget {
-  const MyTile({super.key});
+  final int index;
+
+  const MyTile({super.key, required this.index});
 
   @override
   State<MyTile> createState() => _MyTileState();
@@ -24,22 +26,17 @@ class _MyTileState extends State<MyTile> {
         ),
         child: ListTile(
           leading: const Icon(Icons.audio_file),
-          title: transcribeController.transcriptionTitleController.isEmpty
-              ? const Text(
-                  "Title",
-                )
-              : Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Text(
-                    removeFileExtension(
-                        transcribeController.transcriptionTitleController),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-          subtitle: transcribeController.transcriptionDateController.isEmpty
-              ? const Text("Time & date")
-              : Text("${transcribeController.transcriptionDateController} ${transcribeController.transcriptionTimeController}"),
+          title: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Text(
+              removeFileExtension(
+                  transcribeController.audioFileList[widget.index].fileName),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          subtitle: Text(
+                  "${transcribeController.audioFileList[widget.index].currentDate} ${transcribeController.audioFileList[widget.index].currentTime}"),
           titleTextStyle: TextStyle(
               color: Colors.grey[900],
               fontSize: 16,
