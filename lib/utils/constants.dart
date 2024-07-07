@@ -26,7 +26,16 @@ var desktopBar = AppBar(
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
-          child: GestureDetector(onTap: () {}, child: Text("Dashboard")),
+          child: GestureDetector(
+              onTap: () {},
+              child: Container(
+                  decoration: BoxDecoration(
+
+                  ),
+                  margin: const EdgeInsets.only(bottom: 4),
+                  child: Text("Dashboard"),                 
+                )
+              ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
@@ -118,15 +127,6 @@ Drawer buildSideDrawer(BuildContext context) {
       ]),
     ),
   );
-}
-
-String removeFileExtension(String fileName) {
-  int lastDotIndex = fileName.lastIndexOf('.');
-  if (lastDotIndex == -1) {
-    // No extension found
-    return fileName;
-  }
-  return fileName.substring(0, lastDotIndex);
 }
 
 Drawer buildMyDrawer(BuildContext context) {
