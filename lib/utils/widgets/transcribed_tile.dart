@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class TranscribedTile extends StatelessWidget {
+import '../../presentation/controllers/transcribe_controller.dart';
+
+class TranscribedTile extends StatefulWidget {
   const TranscribedTile({super.key});
+
+  @override
+  State<TranscribedTile> createState() => _TranscribedTileState();
+}
+
+class _TranscribedTileState extends State<TranscribedTile> {
+
+  final transcribeController = Get.put(TranscribeController());
 
   @override
   Widget build(BuildContext context) {

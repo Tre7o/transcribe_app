@@ -2,6 +2,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:transcribe_app/data/repos/transcribe_data.dart';
 
 import '../../presentation/controllers/transcribe_controller.dart';
 
@@ -43,10 +44,10 @@ class _CustomDialogState extends State<CustomDialog> {
                     final file = result.files.first;
 
                     print(file.name);
-                    // print(file.bytes);
-                    print(file.size);
+                    //print(file.bytes);
+                    //print(file.size);
                     print(file.extension);
-                    // print(file.path);
+                    //print(file.path);
 
                     DateTime dateTime = DateTime.now();
                     String formattedDate =
@@ -63,6 +64,14 @@ class _CustomDialogState extends State<CustomDialog> {
                     } else {
                       transcribeController.addAudioFile(
                           file.name, formattedDate, formattedTime);
+
+                      // make a call to the flask application for transcribing
+                      TranscribeData transcribeData = new TranscribeData();
+                      String response = await transcribeData.sendForTranscription(file);
+
+                      setState(() {
+                        message = response;
+                      });
 
                       // ignore: use_build_context_synchronously
                       Navigator.of(context)

@@ -37,9 +37,9 @@ class _TopBarState extends State<TopBar> {
               child: GestureDetector(
                   onTap: () {
                     setState(() {
-                      widget.isDashboardTapped = true;
-                      widget.isSettingsTapped = false;
-                      widget.isTranscriptionsTapped = false;
+                      // widget.isDashboardTapped = true;
+                      // widget.isSettingsTapped = false;
+                      // widget.isTranscriptionsTapped = false;
                       Navigator.pushReplacementNamed(context, '/home');
                     });
                   },
@@ -56,9 +56,9 @@ class _TopBarState extends State<TopBar> {
               child: GestureDetector(
                   onTap: () {
                     setState(() {
-                      widget.isTranscriptionsTapped = true;
-                      widget.isDashboardTapped = false;
-                      widget.isSettingsTapped = false;
+                      // widget.isTranscriptionsTapped = true;
+                      // widget.isDashboardTapped = false;
+                      // widget.isSettingsTapped = false;
                       Navigator.pushReplacementNamed(
                           context, '/transcriptions');
                     });
@@ -75,9 +75,9 @@ class _TopBarState extends State<TopBar> {
               child: GestureDetector(
                   onTap: () {
                     setState(() {
-                      widget.isSettingsTapped = true;
-                      widget.isDashboardTapped = false;
-                      widget.isTranscriptionsTapped = false;
+                      // widget.isSettingsTapped = true;
+                      // widget.isDashboardTapped = false;
+                      // widget.isTranscriptionsTapped = false;
                       Navigator.pushReplacementNamed(context, '/settings');
                     });
                   },
